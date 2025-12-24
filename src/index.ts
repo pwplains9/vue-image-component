@@ -4,8 +4,7 @@ import type { PictureProps } from './components/Picture.vue.d.ts'
 
 export { Picture }
 export type { PictureProps }
-export { vuePictureCompressor } from './vite-plugin'
-export type { VuePictureCompressorOptions, CompressionOptions } from './vite-plugin'
+// Vite plugin is exported separately via package.json exports
 
 export default {
   install(app: App) {

@@ -12,7 +12,7 @@ export default defineConfig({
       formats: ['es', 'cjs']
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', './vite-plugin'],
       output: {
         globals: {
           vue: 'Vue'

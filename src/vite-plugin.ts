@@ -1,4 +1,4 @@
-import type { Plugin, OutputBundle } from 'vite'
+import type { Plugin } from 'vite'
 import imagemin from 'imagemin'
 import imageminMozjpeg from 'imagemin-mozjpeg'
 import imageminPngquant from 'imagemin-pngquant'
@@ -61,15 +61,15 @@ export function vuePictureCompressor(options: VuePictureCompressorOptions = {}):
   return {
     name: 'vue-picture-compressor',
     enforce: 'pre',
-    async generateBundle(_options: any, bundle: OutputBundle) {
+    async generateBundle(_options: any, bundle: any) {
       const imageExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.svg']
       const processedFiles = new Set<string>()
 
       for (const [, chunk] of Object.entries(bundle)) {
-        if (!chunk || typeof chunk !== 'object' || 'type' in chunk === false) continue
+        if (!chunk || typeof chunk !== 'object' || !('type' in chunk)) continue
         if ((chunk as any).type !== 'asset') continue
 
-        const asset = chunk as { fileName: string; source: string | Uint8Array }
+        const asset = chunk as any
         const ext = extname(asset.fileName).toLowerCase()
 
         if (!imageExtensions.includes(ext)) continue

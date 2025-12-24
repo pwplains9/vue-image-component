@@ -10,13 +10,31 @@ export default defineConfig({
       formats: ['es', 'cjs']
     },
     rollupOptions: {
-      external: ['vite', 'imagemin', 'imagemin-mozjpeg', 'imagemin-pngquant', 'imagemin-webp', 'imagemin-svgo', 'fs', 'path', 'url'],
+      external: (id) => {
+        // Externalize all Node.js built-ins
+        if (id.startsWith('node:') || ['fs', 'path', 'url', 'util', 'os', 'stream', 'child_process', 'assert', 'constants', 'buffer'].includes(id)) {
+          return true
+        }
+        // Externalize vite and imagemin packages
+        if (id === 'vite' || id.startsWith('imagemin') || id.startsWith('@vitejs')) {
+          return true
+        }
+        // Externalize all node_modules (dependencies)
+        if (!id.startsWith('.') && !id.startsWith('/') && !id.includes(':')) {
+          return true
+        }
+        return false
+      },
       output: {
         globals: {
           vite: 'Vite'
-        }
+        },
+        banner: '/* eslint-disable */',
+        footer: '/* eslint-enable */'
       }
-    }
+    },
+    ssr: true,
+    target: 'node18'
   }
 })
 
