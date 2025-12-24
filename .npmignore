@@ -1,0 +1,16 @@
+node_modules
+src
+example
+.vscode
+.idea
+*.log
+*.local
+tsconfig.json
+tsconfig.build.json
+vite.config.ts
+vite.config.plugin.ts
+.github
+.gitignore
+
+
+
