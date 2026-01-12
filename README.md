@@ -13,7 +13,7 @@ Vue 3 component for image optimization with automatic compression at build time.
 ## Installation
 
 ```bash
-npm install vue-picture-compressor
+npm install vue3-picture-compressor
 ```
 
 ### Requirements
@@ -59,7 +59,7 @@ export default defineConfig({
 ```javascript
 import { createApp } from 'vue'
 import App from './App.vue'
-import VuePictureCompressor from 'vue-picture-compressor'
+import VuePictureCompressor from 'vue3-picture-compressor'
 
 const app = createApp(App)
 app.use(VuePictureCompressor)
@@ -79,7 +79,7 @@ app.mount('#app')
 </template>
 
 <script setup>
-import { Picture } from 'vue-picture-compressor'
+import { Picture } from 'vue3-picture-compressor'
 </script>
 ```
 
